@@ -1,0 +1,22 @@
+﻿Option Explicit
+'Script written by <Junichiro Horikawa>
+'Script copyrighted by <Junichiro Horikawa>
+'Script version Wednesday, 31 August 2011 15:02:35
+
+Call Main()
+Sub Main()
+	Dim strObject, arrObjects, strLayer
+	strObject = Rhino.GetObject("Select object for selecting all objects in layer",,True)
+	
+	If IsNull(strObject) Then
+		Exit Sub
+	End If
+	
+	RHino.EnableRedraw(False)
+	
+	strLayer = Rhino.ObjectLayer(strObject)
+	arrObjects = Rhino.ObjectsByLayer(strLayer)
+	Rhino.SelectObjects(arrObjects)
+	
+	Rhino.EnableRedraw(True)
+End Sub
